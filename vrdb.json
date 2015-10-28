@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "Abuse of Functionality",
+        "Description": "Abuse of functionality, sometimes referred to as a 'business logic attack', depends on the design and implementation for application functions and features. As functionality is added to applications, thought must be given to how the function or feature can be manipulated to circumvent the business process, or abused to perform a function not intended by the developer.",
+        "Implication": "An attacker can abuse the functionality within the application to perform undesired actions.",
+        "Solution": "Robust threat modeling exercises should be performed for each application feature to enumerate ways that attackers can abuse the feature. All functions and features of the application should be tested against a comprehensive set of use and abuse cases to ensure that the application enables only the intended functionality and no more.",
+        "Likelihood": "MEDIUM",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+    },
+    {
+        "Name": "Application Misconfiguration",
+        "Description": "Software applications are very complex; to ease installation and configuration of the application, many software packages come preconfigured with vulnerabilities right out of the box. Application misconfigurations are not coding issues. They are options and/or features in the application that can be easily exploited, such as: Special access mechanisms Default usernames and passwords Default configuration file settings Security settings at the lowest possible level Due to the complexity of configuration, certain combinations of settings might expose vulnerabilities, though each individual setting may be safe on its own.",
+        "Implication": "An attacker can leverage poor configurations to get a large amount of attack surfaces, such as insufficient authorization (default credentials), or sniff traffic (running with non-encrypted network traffic).",
+        "Solution": "All application permissions, configurable components and files should be given least privilege for the specific platform and technology stack. The application should prominently warn users/administrators when an insecure setting is in use (as it might be temporarily during deployment or in a staging environment).",
+        "Likelihood": "MEDIUM",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": [
+            "Web",
+            "Thick",
+            "Network"
+        ]
+    }
+]
