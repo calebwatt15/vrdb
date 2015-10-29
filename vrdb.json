@@ -22,5 +22,27 @@
             "Thick",
             "Network"
         ]
+    },
+    {
+        "Name": "Brute Force Login",
+        "Description": "The application does not prevent attackers from trying many username/password combinations in rapid succession in order to guess account credentials.",
+        "Implication": "Attackers may be able to discover valid credentials.",
+        "Solution": "The framework should track failed login attempts even for non-existent accounts, so that the lockout feature doesn't expose an account enumeration vulnerability. The framework should track all unique accounts tried unsuccessfully for a particular password, using a hash of the password with a static salt as a key to prevent password exposure. When the threshold is reached, the application should prevent all logins using that password to any account, much like the account lockout. The framework should be capable of sending notifications to perimeter technologies to help enforce lockouts or global CAPTCHA. The lockout period should only be temporary, so as to prevent long-term denial of service against a user account. The framework should provide an interface for an administrator or customer service representative to white-list IPs for an account to log in from, in case of a targeted, sustained, long-term denial of service attack against a specific user. The framework should expose and implement configurable rules about failed login attempts with secure defaults.",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Brute Force Session Identifier",
+        "Description": "Session tokens are generated in a predictable fashion or from a key space that is too small to prevent guessing a token in reasonable time. The application does not detect and prevent session brute forcing attempts.",
+        "Implication": "Attackers may be able to guess session identifiers, and then be authenticated as another user. This would allow the attacker to act as another user.",
+        "Solution": "Ensure that session identifiers are created using a secure random algorithm, with enough entropy to make guessing infeasible during the average lifetime of a session. The framework should check that an active session does not already exist with the same ID as a newly generated session token before issuing the token. The application should be configurable to tie session IDs to SSL sessions, tracking those sessions across renegotiations. Any token which is sent over an SSL connection that isn't currently tied to the token should be expired immediately and the associated session terminated or suspended until the client successfully reauthenticates. The application should be configurable to tie session IDs to source IP addresses, and terminate/suspend any active session if subsequent requests originate from a different IP. The configuration should allow the setting to be enabled globally, or on a per-user or per-session basis. (Users may choose to "opt in" to the restriction if they know their IP address is unlikely to change during the session.) The application should track the number of requests made with invalid/expired session IDs and alert or block requests based on a configurable rate limit. Malicious actors may be identified by source IP address, a combination of browser fingerprinting features, or other configurable fraud metrics.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
     }
 ]
