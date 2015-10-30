@@ -44,5 +44,41 @@
         "Risk": "HIGH",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Brute Force Predictable Resource Location",
+        "Description": "Server-side resources including admin pages, file backups, uploaded files, logs, and sample files exist in easy-to-guess locations. Data resources are often referenced by their auto-incremented primary key, making it easy for attackers to guess other valid values or infer transaction volumes.",
+        "Implication": "An attacker may be able to guess the location of some sensitive files. These files could do anything from reveal software versions to allow acccess to sensitive functionality.",
+        "Solution": "The custom framework should enforce authentication/authorization checks on all dynamic content. Custom administrative interfaces should be built on top of generic framework administrative access platform, segregated from user interfaces.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Buffer Overflow",
+        "Description": "The application allows an attacker to supply more data than will fit in a pre-allocated block of memory and overwrite existing instructions or data.",
+        "Implication": "The attacker is able to inject too much data into the application. This can lead to application crashes, or in some cases, add executable code after the buffer.",
+        "Solution": "The framework should be built on a memory-managed platform which prohibits direct memory access.",
+        "Likelihood": "HIGH",
+        "Impact": "VERY HIGH",
+        "Risk": "VERY HIGH",
+        "Types": [
+            "Web",
+            "Thick"
+        ]
+
+    },
+    {
+        "Name": "Clickjacking",
+        "Description": "A web application does not prevent itself from being framed into another application. This allows it to be framed into the application, and an attacker can use this to either hide the target application within an invisible frame, and pass clicks to it, or to put content on top of th",
+        "Implication": "The attacker can use the invisible frame to 'pass' clicks to the target site. This can trick users into performing actions they otherwise would not, and bypass anti-CSRF nonces. If an attacker chooses to place content on top of the frame, the attacker can spoof an authentication box on top of the application, tricking users into revealing their credentials.",
+        "Solution": "Apply either an X-Frame-Options header, with a value of 'DENY' or 'SAMEORIGIN'. The framework should also check the User Agent from  each request, and if the User Agent does not support X-Frame-Options or Content Security Policy, then it should either insert Framebusting code, or redirect to a Browser upgrade page. Content Security Policy is a more robust solution than X-Frame-Options, but is not yet fully standardized across all browsers.",
+        "Likelihood": "MEDIUM",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
     }
 ]
