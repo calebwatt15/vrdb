@@ -93,5 +93,16 @@
         "Risk": "MEDIUM",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Content Spoofing",
+        "Description": "The application displays user-defined content in the URL or page body in a way that makes it appear to be legitimate site content.",
+        "Implication": "An attacker can trick users into thinking that a site has some content. This is usually used in social engineering attacks. The attacker will post a fake support email, and harvest credentials, or point users to another site, causing the victim  site to lose traffic.",
+        "Solution": "Do not reflect user-passed data onto the page or URL. This includes sanitizing redirection URLs, and protecting the page from outputs. If user content is to be put onto the page, then it must be placed on the page in a manner that it does not appear to be official content from the site. Content Spoofing commonly occurs in error messages. A blanket, customized 40X status message can help prevent this.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
     }
 ]
