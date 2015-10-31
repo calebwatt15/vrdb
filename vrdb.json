@@ -104,5 +104,38 @@
         "Risk": "MEDIUM",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Cookie Theft / Session Hijacking",
+        "Description": "It's possible for an attacker to steal and reuse session identifiers or other sensitive cookie values when they are stored or transmitted insecurely.",
+        "Implication": "An attacker can access the application as if they are another user. This allows them to perform actions as that user, using that user's session token.",
+        "Solution": "Apply Secure and HttpOnly flags to all cookies. Do not track sessions in the URL, and do not allow concurrent sessions on the application. If a concurrent session occurs, deauthenticate the oldest session, and inform the user that a login was detected on another device.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Cross-Site Request Forgery",
+        "Description": "A vulnerable application processes a transaction using an existing session, without verifying that the transaction was intended to be initiated by the user and not a malicious 3rd-party site. This is done by using a third party site to send a request to the victim site, and using the browser to attach cookies stored for that site with the request. If a request is predictable, then an attacker can force a victim user to send a request, and perform an action on the victim site.",
+        "Implication": "The attacker can force users to perform undesired actions. These can range from deleting other users, adding the attacker to a privileged user group, transfering funds, or making an order.",
+        "Solution": "Automatically generate and check randomized tokens for all POST requests by default. This token should be a new, random token for every sensitive request. Tokens should not be allowed cross-session, either. Disallow state changes via GET requests, enforcing RFC.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Cross-Site Scripting",
+        "Description": "Cross-Site Scripting (aka XSS) is an injection attack that occurs when an application accepts untrusted data and includes it in the context of an HTML page. An attacker uses the injection to place JavaScript (or other client-side script) into the page, causing it to be exxecuted by the user. This can be either a reflected injection, or stored. Reflected XSS occurs when a part of a request is reflected onto the page. Stored XSS occurs when malicious data is stored somewhere in the application, then executed when users view the stored data (I.E. in a comment section or profile).",
+        "Implication": "The attacker can run scripts on a victim machine, in the context of the web application. This allows the attacker to steal cookies, steal data from the browser, perform CSRF attacks on the page more easily, or use social engineering by faking Plugin updates or creating messages for the users.",
+        "Solution": "All data from the client-side should be sanitized (using a Whitelist, not a blacklistof unstrusted data) upon input. Also, data should be output encoded to ensure that it is not read as application code. Note that output encoding should not replace data sanitization.",
+        "Likelihood": "HIGH",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
     }
 ]
