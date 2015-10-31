@@ -148,5 +148,133 @@
         "Risk": "HIGH",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Denial of Service (Application Based)",
+        "Description": "The root cause of an Application Based denial of service is when an attacker uses/exhausts/depletes all of the resources (such as bandwidth, database connections, disk storage, CPU, memory, threads, or application specific resources) on a system preventing legitimate users from using the system. To prevent depletion of resources the application must restrict the size or amount of resources that are requested or used.",
+        "Implication": "An attacker can prevent valid users from being able to use the application. As such, users may become frustrated and use an alternative application, or may not be able to complete critical tasks on time.",
+        "Solution": "Perimeter technologies including geocaching/proxy services must support automatic and/or manual 'panic button' anti-automation, enforcing progressive CAPTCHA for unvalidated requests, triggering on excessive 5XX responses, or direct signal from application. In addition to Perimeter solutions, the application can use Profile resource-dependent transactions and build transaction queues and alerting when queues reach thresholds. Enforce transaction-based rate limits.",
+        "Likelihood": "MEDIUM",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": [
+            "Web",
+            "Thick"
+        ]
+
+    },
+    {
+        "Name": "Denial of Service (Connection-Based)",
+        "Description": "Applications are generally not designed to recognize and handle deliberately slowed connections or other abuses of HTTP below Layer 7. Some types of attacks won't even reach the application code because they prevent the web server from effectively processing requests.",
+        "Implication": "An attacker can prevent users from accessing the application by attacking the server and infrastructure.",
+        "Solution": "Perimeter technologies should detect an event where many TCP or HTTP connections are opened but no data are sent (or sent at very slow speeds) over these connections. These connections should be dropped during the event, only allowing normal-data-rate connections to persist during the event. Perimeter technologies should also detect an event where multiple uniquely-identifiable clients open more than the two connections allowed by HTTP standards and refuse these clients during the event. Clients can be identified by a unique username/authorization token, or a combination of unique attributes such as IP address and User-Agent",
+        "Likelihood": "MEDIUM",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": [
+            "Web",
+            "Thick",
+            "Network"
+        ]
+
+    },
+    {
+        "Name": "Directory Indexing",
+        "Description": "A misconfigured server can show a directory listing, which could potentially yield sensitive information to an attacker.",
+        "Implication": "An attacker can find files, or gain information on the server. If sensitive files arcessed in the directory, the attacker may be able to access files they otherwise would not have found.",
+        "Solution": "Disable directory listings in the web server by default. Alternately, though less efficient, create an index file in each directory where Indexing should not be accessed.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Fingerprinting",
+        "Description": "One or several components of the underlying software and framework leak version information. This could help an attacker to identify which components are vulnerable. This issue is mitigated by removing all version information. This can be as simple as server version headers in the response, or checking the hash of a file or image returned.",
+        "Implication": "The attacker can gain a better understanding of the underlying architecure. This can lead to better crafted attacks.",
+        "Solution": "Infrastructure should not leak information which can be used to identify the specific version of platform or infrastructure technology. Perimeter technologies should strip all such version information from outgoing responses. URL structure should not reveal the underlying technology. Default content should be removed when possible. Make sure that only generic error pages are shown without showing any information of the underlying system. Remove all development and debugging tools.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Format String",
+        "Description": "The root cause of the format string is attacker having the ability to control or write completely the format string used to format data input for some functions. (C, C++, and Assembly functions such as fprintf, printf, sprintf, setproctitle, and syslog are common victims) potentially leading to buffer overflows or data representation problems.",
+        "Implication": "An attacker may be able to overwrite format strings, potentially causing a buffer overflow. This can lead to Buffer Overflow vulnerabilities.",
+        "Solution": "Alert and/or block on known format string signatures Generic Framework Solution Prohibit access to vulnerable APIs and provide safe wrappers of those APIs instead.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "HTTP Request / Response Smuggling",
+        "Description": "Malformed HTTP requests and responses are interpreted differently by proxies, web servers, or other systems which process HTTP along the request/response path. This can allow a request or response to bypass proxy filters or rules, poison caches, or cause the response from one request to be incorrectly matched with another.",
+        "Implication": "An attacker may be able to force the wrong response onto another user, or even bypass certain proxy filters, and therefore bypassing certain restrictions built into the application architechture.",
+        "Solution": "Sanitize all HTTP headers, especially duplicates, by enforcing strict adherence to RFC. Sanitize both HTTP requests and response bodies, ensuring exact correspondence between Content-Length headers and body lengths. Avoid HTTP connection sharing. Enforce SSL to prevent proxy tampering. Provide configuration option to silently sanitize malformed data or return a 5XX error response.",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "HTTP Response Splitting",
+        "Description": "The application allows CRLF characters to be injected into HTTP response headers, which allows an attacker to inject a malicious response body in place of the intended response or force a redirect to a malicious resource.",
+        "Implication": "An attacker may be able to split responses, adding content to the body, which could allow for client side code injection or content spoofing. They may also be able to perform Response Smuggling by splitting one response into two.",
+        "Solution": "Encode all CRLF pairs in dynamic data before writing the data in the context of an HTTP response header. Prevent direct access to response headers by forcing all header write requests to use a safe API",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Improper Filesystem Permissions",
+        "Description": "The root cause of improper filesystem permissions is having incorrect filesystem permissions such as read, write, modify, or execute set on files, folders, and symbolic links. These improper permissions allow the attacker to access restricted files or directories and modify or delete their contents.",
+        "Implication": "An attacker may be able to access, read, write to, delete, or execute from otherwise restricted files on the file system.",
+        "Solution": "Ensure that proper file and directory permissions are applied. Enforce stricter default permissions.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Improper Input Handling",
+        "Description": "The root cause of improper input handling is the application trusting, not validating or not correctly validating inputs. All inputs should be considered untrusted as they can come from a variety of mechanisms including human, browsers or devices, transferred in various formats and come in many formats. Accepting untrusted input may leave the application vulnerable to attacks such as Buffer Overflows, SQL Injection, OS Commanding, or Denial of Service.",
+        "Implication": "An attacker may be able to abuse the improperly handled input to perform an injection attack (such as SQL injection, XSS, or Remote Code Execution).",
+        "Solution": "Provide canonicalization and positive validation APIs for custom data types, strictly enforcing business rules, with configurable rules to reject or sanitize bad data.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Improper Output Handling",
+        "Description": "The root cause of improper output handling is an application passing along data and not interrogated consistently through mechanisms such as filtering or sanitization. Improper output handling can occur while passing data to applications or between tiers within an application architecture. Not validating output data may allow an application to pass along improper output encoding or escaping, invalid data, incorrect data, or malicious content to the consumer.",
+        "Implication": "An attacker may be able to force a part of the application to handle improperly formatted data. This could lead to bad data being passed to a user, ultimately either executing or breaking parts of the application.",
+        "Solution": "Provide context-sensitive encoders for all common data types in all output contexts, ensuring no custom code can write directly to output.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Information Leakage",
+        "Description": "The application discloses sensitive/classified data or useful data about the application that can be used for targeted attacks, even though the developer did not intend for the data to be disclosed. This is often architecture information (Internal IP addresses, internal file paths, SQL Syntax with Database information, Stack traces, or back-end code).",
+        "Implication": "An attacker may be able to hone their attack further based on additional information gained from this leak.",
+        "Solution": "Alert, block, or automatically sanitize classified data in responses. Automatically scrub HTML, JavaScript, CSS, and other data formats of comment data. Configure the platform to return generic error codes by default and log locally. Disable stack traces in production; show a generic error page instead. Generic Framework Solution. Provide common error-handling framework and APIs which take two error messages as parameters: one to be displayed to the user and one to be written to logs. Block file paths from being displayed by default",
+        "Likelihood": "INFO",
+        "Impact": "INFO",
+        "Risk": "INFO",
+        "Types": "Web"
+
     }
 ]
