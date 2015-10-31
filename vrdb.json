@@ -137,5 +137,16 @@
         "Risk": "HIGH",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Cross-Site Scripting (DOM Based)",
+        "Description": "Client-side code (e.g. JavaScript) inserts attacker-controlled data into the DOM in a way that allows the data to be executed as functional code. Examples include using document.write, which can introduce SCRIPT nodes directly, and modifying innerHTML or other element attributes that can cause SCRIPT nodes to be generated or function definitions to be overwritten. DOM-Based XSS differs from other forms of cross-site scripting which are the result of vulnerable server-side code.",
+        "Implication": "The attacker can run scripts on a victim machine, in the context of the web application. This allows the attacker to steal cookies, steal data from the browser, perform CSRF attacks on the page more easily, or use social engineering by faking Plugin updates or creating messages for the users.",
+        "Solution": "'Web 2.0'  (dynamic) frameworks must expose an API for page creation/modification that does not use document.write/ln or allow dynamic data to be injected into innerHTML or similar DOM element attributes. Dynamic data must be written to the DOM by using createTextNode, which does not introduce the danger of interpreting user data as functional code.",
+        "Likelihood": "HIGH",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
     }
 ]
