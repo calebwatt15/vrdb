@@ -35,6 +35,19 @@
 
     },
     {
+        "Name": "Brute Force (generic) / Insufficient Anti-automation",
+        "Description": "Applications do not define or detect when request rates are outside the bounds of normal, acceptable use.",
+        "Implication": "Depending on what is being automated, an attacker may be able to send tons of requests that notify users, fill a database with data, or hog system resources.",
+        "Solution": "Perimeter technologies including geocaching/proxy services must support automatic and/or manual 'panic button' anti-automation, enforcing progressive CAPTCHA for unvalidated requests, triggering on excessive 5XX responses, or direct signal from application.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "LOW",
+        "Types": [
+            "Web",
+            "Thick"
+        ]
+    },
+    {
         "Name": "Brute Force Session Identifier",
         "Description": "Session tokens are generated in a predictable fashion or from a key space that is too small to prevent guessing a token in reasonable time. The application does not detect and prevent session brute forcing attempts.",
         "Implication": "Attackers may be able to guess session identifiers, and then be authenticated as another user. This would allow the attacker to act as another user.",
