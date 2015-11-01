@@ -276,5 +276,16 @@
         "Risk": "INFO",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Insufficient Authentication / Authorization",
+        "Description": "Incorrect verification of identity and permissions can result in an unauthorized attacker accessing sensitive data or functionality. This can be something as simple as an attacker guessing what Admin functionality is called, and loading it directly (even without a link to it), or an attacker changing the username on a 'Change Password' functionality and having it accepted by the application. It is a mismanagement of authorization.",
+        "Implication": "An attacker can perform actions that they are not supposed to, or perform actions and view, delete, write data they should not have access to.",
+        "Solution": "Enforce a proven authentication and authorization framework scheme which emphasizes policy-based configuration files over hard-coded authentication/authorization checks wherever possible. Deny all access by default, and explicitly grant access per resource. Enforce data storage outside of web roots to prevent requests which bypass the application's access control policy.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
     }
 ]
