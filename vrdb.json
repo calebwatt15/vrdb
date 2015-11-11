@@ -286,7 +286,7 @@
         "Impact": "HIGH",
         "Risk": "HIGH",
         "Types": "Web"
-,
+    },
     {
         "Name": "Insufficient Data Protection",
         "Description": "Sensitive data is not sufficiently protected against disclosures, modification, or non-repudiation. This can be anything from PII not being encrypted properly, to a lack of eavesdropping preventions.",
@@ -379,8 +379,7 @@
         "Name": "Null Byte Injection",
         "Description": "Null Byte Injection is an exploitation technique which uses URL-encoded null byte characters (i.e. %00, or 0x00 in hex) to the user-supplied data. This injection process can alter the intended logic of the application and allow malicious adversary to get unauthorized access to the system files.",
         "Implication": "An attacker may be able to bypass security or authorization mechanisms.",
-        "Solution": "Null bytes are rarely if ever needed in user input for web applications. Perimeter defenses can simply look for null bytes in user input and reject such requests safely. Should a Null Byte be needed for an input, allow it past the perimeter, but programming languages and frameworks should provi
-de safe functions and libraries that automatically encode dynamic data in any context which uses null bytes as control characters. In many cases, API's should fail or otherwise remove null bytes from API input",
+        "Solution":"Null bytes are rarely if ever needed in user input for web applications. Perimeter defenses can simply look for null bytes in user input and reject such requests safely. Should a Null Byte be needed for an input, allow it past the perimeter, but programming languages and frameworks should provide safe functions and libraries that automatically encode dynamic data in any context which uses null bytes as control characters. In many cases, API's should fail or otherwise remove null bytes from API input",
         "Likelihood":"LOW",
         "Impact": "MEDIUM",
         "Risk": "MEDIUM",
