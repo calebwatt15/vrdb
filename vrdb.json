@@ -286,6 +286,105 @@
         "Impact": "HIGH",
         "Risk": "HIGH",
         "Types": "Web"
+,
+    {
+        "Name": "Insufficient Data Protection",
+        "Description": "Sensitive data is not sufficiently protected against disclosures, modification, or non-repudiation. This can be anything from PII not being encrypted properly, to a lack of eavesdropping preventions.",
+        "Implication": "An attacker may be able to read or modify sensitive data.",
+        "Solution": "Provide a configuration-based suite of encryption utilities for all data security needs. This includes safeguards to prevent tampering and eavesdropping. In addition to this, all sensitive data  have as little information stored as possible. All sensitive data will need to be identitifed and protected using these measures.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Insufficient Password Recovery",
+        "Description": "Weak password recovery processes allow stronger password authentication schemes to be bypassed. Non-existent password recovery processes are expensive to support or result in denial-of-service conditions. These weak processes are often the fault of either being able to change passwords in-band, or having weak security questions to unlock an account.",
+        "Implication": "An attacker may be able to fully take over accounts.",
+        "Solution": "Require users to use strong, single-use tokens to recover their passwords. These should be sent to the user out-of-band, and should become unusable if the user does not use them within a set time. In addition to these recommendations, if Security Questions are used, they must be questions with answers that are hard to guess, easy to remember, and have many possible answers.",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Insufficient Process validation",
+        "Description": "The application fails to enforce business process rules, such as ordering of multi-step form submission or conditions on asynchronous transactions.",
+        "Implication": "An attacker may be able to bypass certain requirements on forms, or change data unexpectedly from an interface that was not meant to be accessed a certain way.",
+        "Solution": "Developers must remember to explicitly enforce all business and process rules for every transaction, including every individual step of a multi-step transaction.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Insufficient Session Expiration",
+        "Description": "The application either does not implement an inactivity timeout or an absolute timeout, or the timeouts are too long to provide sufficient risk mitigation. The application does not provide a logout feature, or the feature does not actively terminate the user's session on the Server side.",
+        "Implication": "An attacker has more time to try to brute force a session id, as well as more time using a session that the attacker has hijacked.",
+        "Solution": "All sessions should have an Idle Timeout feature, so that unused sessions are destroyed. In addition to this, they should have a total timeout within a reasonable time frame, to force even active users to create a new session periodically. Also, Logout functionalities must be present, and must terminate the session on the Server side, not just remove or change cookies in the User's browser.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Insufficient Transport Layer Protection",
+        "Description": "Not all traffic flowing between two endpoints is properly secured, which makes it possible for attackers to perform man-in-the-middle attacks. This can be something as wide as a total lack of HTTPS on all data to and from a site, or it can mean that a weak cipher is in use.",
+        "Implication": "An attacker may be able to read, intercept, or modify data as it is in transit to or from the server.",
+        "Solution": "Force the use of HTTPS (TLS 1.2) on all parts of the application (or at least parts that have any sensitive data, including session cookies.) In addition, do not support weak ciphers (like RC4). Also, make sure that all TLS End points are running TLS 1.2 with safe ciphers (including proxies or load balancers.) The site should also use HTTP Strict Transport Security.",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Integer Overflow / Underflow",
+        "Description": "Arithmetic operations cause a number to either grow too large to be represented in the number of bits allocated to it, or too small. This could cause a positive number to become negative or a negative number to become positive, resulting in unexpected/dangerous behavior.",
+        "Implication": "An attacker may be able to force the application to overflow an integer. This may seem triivial, but can allow a lot of unexpected behaivors. This can be as simple as flipping a counter, or may change an Authorization setting from one value to another.",
+        "Solution": "The framework should provide safe object wrappers for numerical data types, just as it does for other generic data types such as phone numbers and email addresses. All arithmetic operations performed on primitive numeric types in the framework should perform overflow/underflow checks first. Never perform arithmetic operations on numeric primitives without stricct checking for overflow/underflow conditions.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "LDAP Injection",
+        "Description": "LDAP queries are formed using dynamic data without performing proper encoding, allowing the data to change the functional meaning of the query.",
+        "Implication": "An attacker may be able to manipulate LDAP queries. Much like SQL Injection, this can lead to bypassing authentication mechanisims, or pulling data that was not meant to be accessed by a user.",
+        "Solution": "The framework should provide safe libraries for interacting with LDAP servers which automatically encode unsafe data. The framework should not allow application code to directly interact with LDAP servers.",
+        "Likelihood": "LOW",
+        "Impact": "HIGH",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Mail Command Injection",
+        "Description": "An application includes dynamic data in SMTP communications without sanitizing or encoding the data. The structure of the data changes the meaning of the mail commands or allows an attacker to inject new commands.",
+        "Implication": "An attacker may be able to change the context of a mail command in an unexpected manner. This could lead to mail not being delivered, or the mail server being interacted with in unexpected ways.",
+        "Solution": "The framework should provide safe libraries for interacting with mail server systems which automatically encodes and escapes data to prevent alterations to the intended functionality.",
+        "Likelihood": "LOW",
+        "Impact": "LOW",
+        "Risk": "LOW",
+        "Types": "Web"
+
+    },
+    {
+        "Name": "Null Byte Injection",
+        "Description": "Null Byte Injection is an exploitation technique which uses URL-encoded null byte characters (i.e. %00, or 0x00 in hex) to the user-supplied data. This injection process can alter the intended logic of the application and allow malicious adversary to get unauthorized access to the system files.",
+        "Implication": "An attacker may be able to bypass security or authorization mechanisms.",
+        "Solution": "Null bytes are rarely if ever needed in user input for web applications. Perimeter defenses can simply look for null bytes in user input and reject such requests safely. Should a Null Byte be needed for an input, allow it past the perimeter, but programming languages and frameworks should provi
+de safe functions and libraries that automatically encode dynamic data in any context which uses null bytes as control characters. In many cases, API's should fail or otherwise remove null bytes from API input",
+        "Likelihood":"LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
 
     }
 ]
