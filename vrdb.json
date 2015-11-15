@@ -385,5 +385,16 @@
         "Risk": "MEDIUM",
         "Types": "Web"
 
+    },
+    {
+        "Name": "OS Commanding",
+        "Description": "OS-level calls are constructed using dynamic data, allowing an attacker to append additional function calls or manipulate parameters of the original call.",
+        "Implication": "An attacker can run commands on the server. This can allow them to take over the server, and have a further foothold on the network.",
+        "Solution": "Build safe wrappers for system calls which prevent dynamic data from changing the intended meaning of the call.",
+        "Likelihood": "MEDIUM",
+        "Impact": "HIGH",
+        "Risk": "HIGH",
+        "Types": "Web"
+
     }
 ]
