@@ -396,5 +396,16 @@
         "Risk": "HIGH",
         "Types": "Web"
 
+    },
+    {
+        "Name": "Path Traversal",
+        "Description": "File resources are accessed using references constructed from user-supplied data, allowing a malicious user to access files outside the web root that were not intended to be exposed. Often, the application builds file paths to grab a file based on user-supplied input. By putting relative path names, an attacker can access unexpected files.",
+        "Implication": "An attacker may be able to access unexpected files. Depending on the permissions on the server, the attacker may be able to see the contents of any system file, or source code of files within the web root.",
+        "Solution": "The framework should provide safe libraries for accessing the file system that canonicalize path references, enforce proper access control, and prevent direct access to the filesystem. The platform should be deployed with permissions that prevent the web server process from accessing files outside the web root.",
+        "Likelihood": "LOW",
+        "Impact": "MEDIUM",
+        "Risk": "MEDIUM",
+        "Types": "Web"
+
     }
 ]
